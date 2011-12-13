@@ -10,7 +10,7 @@ module Rtre
 
     # Approximate Matching http://laurikari.net/tre/documentation/regaexec/
     attach_function :tre_regaexec, [:pointer, :string, :pointer, ApproxParams, :int], :int
-    attach_function :tre_reganexec, [:pointer, :string, :size_t, ApproxParams, :int], :int
+    attach_function :tre_reganexec, [:pointer, :string, :size_t, :pointer, ApproxParams, :int], :int
     attach_function :tre_regawexec, [:pointer, :pointer, :size_t, ApproxParams, :int], :int
     attach_function :tre_regawnexec, [:pointer, :pointer, :size_t, ApproxParams, :int], :int
 

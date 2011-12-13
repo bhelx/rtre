@@ -19,5 +19,17 @@ module Rtre
            :num_del, :int,
            :num_subst, :int
   end
+
+  # https://github.com/GerHobbelt/libtre/blob/master/lib/tre.h#L78
+  class Regex < FFI::Struct
+    layout :re_nsub, :size_t,
+           :value, :pointer
+  end
+
+  # https://github.com/GerHobbelt/libtre/blob/master/lib/tre.h#L83
+  class RegMatch < FFI::Struct
+    layout :rm_so, :int,
+           :rm_eo, :int
+  end
 end
 
