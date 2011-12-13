@@ -1,12 +1,11 @@
-require "rtre/version"
 require 'ffi'
 
-module Rtre
-  extend FFI::Library
-  ffi_lib 'tre'
+require "rtre/version"
+require "rtre/base"
+require "rtre/constants"
+require "rtre/structs"
+require "rtre/functions"
 
-  attach_function :tre_regcomp, [:pointer, :pointer, :int], :int
-  attach_function :tre_regncomp, [:pointer, :pointer, :size_t, :int], :int
-  attach_function :tre_regerror, [:int, :pointer, :pointer, :size_t], :size_t
-  attach_function :tre_regfree, [:pointer], :void
+module Rtre
+
 end
