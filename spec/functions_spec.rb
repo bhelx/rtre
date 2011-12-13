@@ -28,7 +28,7 @@ describe Rtre::Functions do
 
     match_ptr = FFI::MemoryPointer.new :pointer, Rtre::RegMatch.size
     match = Rtre::ApproxMatch.new match_ptr
-    match[:nmatch] = regex[:re_nsub]
+    match[:nmatch] = regex[:re_nsub] + 1
     match[:pmatch] = FFI::MemoryPointer.new :pointer, Rtre::ApproxMatch.size*match[:nmatch]
 
     ap = Rtre::ApproxParams.new
