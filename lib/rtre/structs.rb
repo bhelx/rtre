@@ -9,6 +9,10 @@ module Rtre
            :max_del, :int,
            :max_subst, :int,
            :max_err, :int
+
+    def load(hash)
+      self.merge(hash)
+    end
   end
 
   class ApproxMatch < FFI::Struct
@@ -27,9 +31,10 @@ module Rtre
   end
 
   # https://github.com/GerHobbelt/libtre/blob/master/lib/tre.h#L83
+  typedef :int, :reg_off
   class RegMatch < FFI::Struct
-    layout :rm_so, :int,
-           :rm_eo, :int
+    layout :rm_so, :reg_off,
+           :rm_eo, :reg_off
   end
 end
 
