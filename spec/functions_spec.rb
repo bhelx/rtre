@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Rtre do
+
+  before :all do
+    class String
+      include Rtre::StringMethods
+    end
+  end
+
   it "should find and bind the libtre c functions" do
     methods = Rtre.methods
 
@@ -17,17 +24,19 @@ describe Rtre do
   end
 
   it "should work" do
-
-    class String
-      include Rtre::StringMethods
-    end
-
     match = "This is a test string".ascan("test")
 
     match[:rm_so].should == 10
     match[:rm_eo].should == 14
-
   end
+
+  it "should work with one char missing" do
+    match = "This is a test string".ascan("tet", :max_del => 1)
+
+    match[:rm_so].should == 10
+    match[:rm_eo].should == 12
+  end
+
 end
 
 

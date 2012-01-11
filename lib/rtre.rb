@@ -26,6 +26,8 @@ module Rtre
 
       worked = Rtre.tre_reganexec(regex_ptr, self, self.size, match_ptr, ap, Rtre.match_flags(opts))
 
+      puts "Workd #{worked}"
+
       Rtre::RegMatch.new match[:pmatch]
     end
 

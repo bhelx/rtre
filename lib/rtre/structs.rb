@@ -11,7 +11,9 @@ module Rtre
            :max_err, :int
 
     def load(hash)
-      self.merge(hash)
+      hash.each do |k, v|
+        self[k] = v rescue nil
+      end
     end
   end
 
