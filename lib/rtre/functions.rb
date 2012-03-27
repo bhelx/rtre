@@ -15,9 +15,9 @@ module Rtre
   attach_function :tre_regaparams_default, [:pointer], :int
 
   def self.approx_params(opts)
-    ap_ptr = FFI::MemoryPointer.new :pointer, Rtre::ApproxParams.size
+    ap_ptr = FFI::MemoryPointer.new(:pointer, Rtre::ApproxParams.size)
     Rtre.tre_regaparams_default(ap_ptr)
-    ap = Rtre::ApproxParams.new ap_ptr
+    ap = Rtre::ApproxParams.new(ap_ptr)
     return ap unless opts
 
     if opts.has_key? :fuzziness
@@ -31,11 +31,11 @@ module Rtre
 
   def self.comp_flags(opts)
     return 0 unless opts and opts.has_key? :comp_flags
-    opts[:comp_flags]
+    opts.delete(:comp_flags).reduce(:|)
   end
 
   def self.match_flags(opts)
     return 0 unless opts and opts.has_key? :match_flags
-    opts[:match_flags]
+    opts.delete(:match_flags).reduce(:|)
   end
 end
